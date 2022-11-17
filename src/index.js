@@ -10,8 +10,6 @@ const morgan = require('morgan')
 const methodOverride = require('method-override');   
 const cookieParser = require('cookie-parser')  
 const session = require('express-session') 
-const flash = require('connect-flash') 
-const toastr = require('express-toastr');
 const jwt = require('jsonwebtoken') 
 const path = require('path');
 const app = express()
@@ -22,15 +20,6 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
 })) 
-// Message Flash Toast Message
-app.use(flash()); 
-app.use(toastr()); 
-// Set Toast Message 
-app.use(function (req, res, next)
-{
-    res.locals.toasts = req.toastr.render()
-    next()
-});
 // Cookies 
 app.use(cookieParser())
 // file co ten index thi khong can nap vao

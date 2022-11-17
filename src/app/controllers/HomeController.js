@@ -19,7 +19,7 @@ class HomeController {
             } 
             if(ketqua) {           
                 Account.findById(ketqua._id) 
-                    .then((accounts) => {
+                    .then((accounts) => { 
                         if(accounts.role == 'user' || accounts.role == 'admin') {  
                             Product.find({ category: 'Trà hoa quả' }) 
                                 .limit(8)
