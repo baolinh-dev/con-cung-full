@@ -11,15 +11,13 @@
 
 /* Home Category */
 #home .category {
-    margin-top: 24px;
-    margin-bottom: 64px;
+    margin-top: var(--height-header);
 }
 
 #home .category-main {}
 
 #home .category-item__img {
-    object-fit: contain;
-    height: 160px;
+    height: 520px;
 }
 
 #home .category-item__heading {
@@ -99,7 +97,7 @@
     text-align: center;
     padding: 12px;
     border-radius: 20px;
-    min-width: 124px;
+    min-width: 200px;
     margin-right: 20px;
     border: 1px solid #ddd;
     outline: none;
@@ -189,7 +187,7 @@
     line-height: 1.2rem;
     max-height: 1.2rem;
     overflow: hidden;
-    display: -webkit-box;
+    display: -webkit-box; 
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     text-transform: uppercase;
@@ -380,7 +378,8 @@
 }
 
 #news .news-item__img {
-    width: 100%;
+    width: 100%; 
+    height: 100%;
     border-radius: 8px;
 
 }
@@ -608,7 +607,9 @@
     padding-top: 0;
     padding-bottom: 0;
 }
-
+#introduce .introduce-content {
+    padding: 0 172px;
+}
 #introduce .introduce-content p {
     font-size: 1rem;
 }
@@ -897,7 +898,7 @@
 }
 
 #adminBeauty .admin-menu__list-item-anchor {
-    color: var(--main-color);
+    color: var(--text-color);
     font-size: 16px;
     text-decoration: none;
     font-weight: bold;

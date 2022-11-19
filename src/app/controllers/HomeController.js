@@ -18,15 +18,20 @@ class HomeController {
                 quantityCart = req.session.cart.length
             } 
             if(ketqua) {           
-                Account.findById(ketqua._id) 
-                    .then((accounts) => { 
-                        if(accounts.role == 'user' || accounts.role == 'admin') {  
-                            Product.find({ category: 'Trà hoa quả' }) 
-                                .limit(8)
-                                .then((products) => { 
+                Account.findById(ketqua._id)  
+                    .then((accounts) => {  
+                        if(accounts.role == 'user' || accounts.role == 'admin') {   
+                            Promise.all([Product.find({ category: 'Áo quần bé trai' }).limit(8), 
+                        Product.find({ category: 'Áo quần bé gái' }).limit(8),  
+                        Product.find({ category: 'Sữa, đồ ăn dặm' }).limit(8),  
+                        Product.find({ category: 'Phụ kiện' }).limit(8)])
+                                .then(([productsA, productsB, productsC, productsD]) => { 
                                     res.render('sites/home', {   
                                         avatar, name, quantityCart,
-                                        products: mutipleMongooseToObject(products),
+                                        productsA: mutipleMongooseToObject(productsA), 
+                                        productsB: mutipleMongooseToObject(productsB), 
+                                        productsC: mutipleMongooseToObject(productsC), 
+                                        productsD: mutipleMongooseToObject(productsD)
                                     });
                                 })
                             .catch(next);

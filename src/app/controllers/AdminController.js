@@ -819,10 +819,10 @@ Account.findById(ketqua._id)
         Order.aggregate([ 
             {$group : {_id : null, sumaryOrder: { $sum: "$sumary" }}}
         ]), 
-        Product.countDocuments({ category: 'Trà hoa quả'}), 
-        Product.countDocuments({ category: 'Cà phê'}), 
-        Product.countDocuments({ category: 'Smoothies'}), 
-        Product.countDocuments({ category: 'Bánh ngọt'}), 
+        Product.countDocuments({ category: 'Áo quần bé trai'}), 
+        Product.countDocuments({ category: 'Áo quần bé gái'}), 
+        Product.countDocuments({ category: 'Sữa, đồ ăn dặm'}), 
+        Product.countDocuments({ category: 'Phụ kiện'}), 
         Order.aggregate([ 
             {$group : {_id : "$dateOrder", sumaryByDate: { $sum: "$sumary" }}}, 
             {$sort:{"sumaryByDate": 1}}

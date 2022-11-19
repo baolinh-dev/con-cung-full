@@ -75,11 +75,11 @@ class MenuController {
                 if (page) {  
                     // Get Page bằng pagination 
                     var soLuongBoQua = (page - 1) * PAGE_SIZE
-                    Product.find({ category: 'Trà hoa quả' }) 
+                    Product.find({ category: 'Áo quần bé trai' }) 
                         .skip(soLuongBoQua) 
                         .limit(PAGE_SIZE) 
                         .then((productsTraHoaQua) => { 
-                            Product.countDocuments({category: 'Trà hoa quả'}) 
+                            Product.countDocuments({category: 'Áo quần bé trai'}) 
                                 .then((total)=>{  
                                 var tongSoPage = Math.ceil(total / PAGE_SIZE)  
                                 res.render('productDetails/trahoaqua', {  
@@ -94,9 +94,9 @@ class MenuController {
                         .catch(next); 
                 } else { 
                 // Get All 
-                Product.find({ category: 'Trà hoa quả' }).exec()
+                Product.find({ category: 'Áo quần bé trai' }).exec()
                     .then((productsTraHoaQua) => {   
-                        Product.find({ category: 'Trà hoa quả' }).countDocuments({}) 
+                        Product.find({ category: 'Áo quần bé trai' }).countDocuments({}) 
                         .then((total)=>{  
                             var tongSoPage = Math.ceil(total / PAGE_SIZE)  
                             res.render('productDetails/trahoaqua', {   
@@ -162,11 +162,11 @@ class MenuController {
                 if (page) {  
                     // Get Page bằng pagination 
                     var soLuongBoQua = (page - 1) * PAGE_SIZE
-                    Product.find({ category: 'Smoothies' }) 
+                    Product.find({ category: 'Áo quần bé gái' }) 
                         .skip(soLuongBoQua) 
                         .limit(PAGE_SIZE) 
                         .then((productsSmoothies) => {  
-                            Product.countDocuments({category: 'Smoothies'}).then((total)=>{  
+                            Product.countDocuments({category: 'Áo quần bé gái'}).then((total)=>{  
                                 var tongSoPage = Math.ceil(total / PAGE_SIZE) 
                                 res.render('productDetails/smoothies', {   
                                     avatar, 
@@ -180,9 +180,9 @@ class MenuController {
                         .catch(next); 
                 } else {  
                     // Get All
-                    Product.find({ category: 'Smoothies' }).exec()
+                    Product.find({ category: 'Áo quần bé gái' }).exec()
                         .then((productsSmoothies) => {   
-                            Product.find({ category: 'Smoothies' }).countDocuments({}) 
+                            Product.find({ category: 'Áo quần bé gái' }).countDocuments({}) 
                             .then((total)=>{  
                                 var tongSoPage = Math.ceil(total / PAGE_SIZE) 
                                 res.render('productDetails/smoothies', {   
@@ -219,11 +219,11 @@ class MenuController {
                 if (page) {  
                     // Get Page bằng pagination 
                     var soLuongBoQua = (page - 1) * PAGE_SIZE
-                    Product.find({ category: 'Cà phê' }) 
+                    Product.find({ category: 'Sữa, đồ ăn dặm' }) 
                         .skip(soLuongBoQua) 
                         .limit(PAGE_SIZE) 
                         .then((productsCaphe) => { 
-                            Product.countDocuments({category: 'Smoothies'}).then((total)=>{  
+                            Product.countDocuments({category: 'Sữa, đồ ăn dặm'}).then((total)=>{  
                                 var tongSoPage = Math.ceil(total / PAGE_SIZE) 
                                 res.render('productDetails/caphe', {   
                                     avatar, 
@@ -237,9 +237,9 @@ class MenuController {
                         .catch(next); 
                 } else { 
                 // Get All
-                    Product.find({ category: 'Cà phê' }).exec()
+                    Product.find({ category: 'Sữa, đồ ăn dặm' }).exec()
                         .then((productsCaphe) => {   
-                            Product.find({ category: 'Cà phê' }).countDocuments({}) 
+                            Product.find({ category: 'Sữa, đồ ăn dặm' }).countDocuments({}) 
                             .then((total)=>{  
                                 var tongSoPage = Math.ceil(total / PAGE_SIZE) 
                                 res.render('productDetails/caphe', {   
@@ -276,11 +276,11 @@ class MenuController {
                 if (page) {  
                     // Get Page bằng pagination   
                     var soLuongBoQua = (page - 1) * PAGE_SIZE
-                    Product.find({ category: 'Bánh ngọt' }) 
+                    Product.find({ category: 'Phụ kiện' }) 
                         .skip(soLuongBoQua) 
                         .limit(PAGE_SIZE) 
                         .then((productsBanhngot) => { 
-                            Product.countDocuments({category: 'Bánh ngọt'}).then((total)=>{  
+                            Product.countDocuments({category: 'Phụ kiện'}).then((total)=>{  
                                 var tongSoPage = Math.ceil(total / PAGE_SIZE) 
                                 res.render('productDetails/banhngot', {   
                                     avatar, 
@@ -293,9 +293,9 @@ class MenuController {
                         .catch(next); 
                 } else { 
                     // Get All
-                    Product.find({ category: 'Bánh ngọt' }).exec()
+                    Product.find({ category: 'Phụ kiện' }).exec()
                         .then((productsBanhngot) => {   
-                            Product.find({ category: 'Bánh ngọt' }).countDocuments({}) 
+                            Product.find({ category: 'Phụ kiện' }).countDocuments({}) 
                             .then((total)=>{  
                                 var tongSoPage = Math.ceil(total / PAGE_SIZE) 
                                 res.render('productDetails/banhngot', {   
