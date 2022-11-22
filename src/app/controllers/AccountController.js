@@ -10,27 +10,42 @@ const { FALSE } = require('node-sass');
 class AccountController {  
     // [GET] /account/register
     register(req, res, next) {
-        var name = req.cookies.name
+        var name = req.cookies.name 
         res.render('account/register', {   
             layout: false,
             name,
         })
     }  
     // [POST] /account/store
-    store(req, res, next) { 
+    store(req, res, next) {   
+        var password = req.body.password
+        var rePassword = req.body.rePassword 
+        var checkPassWord = false
         // Nếu tài khoản bị trùng 
         Account.findOne({ 
             username: req.body.username
         })   
-        .then(data => { 
+        .then(data => {  
             if(data) {  
                 res.json('Đã trùng username')
-            } else { 
-                const account = new Account(req.body);
-                account
-                    .save()  
-                    .then(() => res.redirect('/account/login'))
-                    .catch(next);
+            } else {   
+                if(password !== rePassword) {  checkPassWord = true }
+                if(checkPassWord !== true) { 
+                    const account = new Account(req.body);
+                    account 
+                        .save()  
+                        .then(() => res.render('account/login', { 
+                            layout: false, 
+                        }))
+                        .catch(next);  
+                } else { 
+                    res.render('account/register', { 
+                            layout: false, 
+                            checkPassWord
+                    })
+                }
+
+                
             }
         })  
         .catch(next);

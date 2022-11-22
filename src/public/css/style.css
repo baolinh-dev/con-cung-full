@@ -557,13 +557,13 @@
 #upload,
 #register,
 #login {
-  background-image: url("/img/background-login.jpg");
+  background-image: url("https://cdn4.vectorstock.com/i/1000x1000/33/43/background-template-with-school-kids-vector-18033343.jpg");
   background-color: #fff;
   height: 100vh;
   background-size: cover;
-  background-position: right center;
+  background-position: top -160px center;
   position: relative;
-  z-index: 9;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center; }
@@ -899,6 +899,7 @@
   align-items: center; }
 
 #detail .detail-quantity__input {
+  width: 300px;
   height: 32px;
   border-radius: 8px;
   padding: 0 12px;
@@ -1110,14 +1111,20 @@
   margin-right: 20px; }
 
 #cartList .cart-infor-img {
-  width: 100%;
+  width: -webkit-fill-available;
   border: 1px solid #ddd;
   border-radius: 20px; }
 
 #cartList .cart-infor-name {
   font-size: 18px;
   color: var(--main-color);
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  line-height: 1.2rem;
+  max-height: 4.8rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4; }
 
 #cartList .cart-price {
   display: flex;
