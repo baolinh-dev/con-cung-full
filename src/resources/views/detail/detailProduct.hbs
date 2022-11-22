@@ -16,43 +16,17 @@
                 <div class="col-lg-5">
                     <div class="img-product">
                         <div class="img-product__represent-wrap">
-                            <img class="img-product__represent" src="https://baolinh-dev.github.io/tea-house-front-end/assets/imgs/tra-hoa-qua/tra-vai.webp" alt="">
-                        </div>
-                        <div class="img-product__tiny-wrap">
-                            <div class="owl-carousel owl-theme mt-5">
-                                <div class="item">
-                                    <div class="drink-item">
-                                        <div class="drink-item__img-wrap">
-                                            <img src="https://baolinh-dev.github.io/tea-house-front-end/assets/imgs/tra-hoa-qua/tra-vai.webp" alt="" class="drink-item__img">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="drink-item">
-                                        <div class="drink-item__img-wrap">
-                                            <img src="https://baolinh-dev.github.io/tea-house-front-end/assets/imgs/tra-hoa-qua/tra-vai.webp" alt=""
-                                                class="drink-item__img">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="drink-item">
-                                        <div class="drink-item__img-wrap">
-                                            <img src="https://baolinh-dev.github.io/tea-house-front-end/assets/imgs/tra-hoa-qua/tra-vai.webp" alt="" class="drink-item__img">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <img class="img-product__represent" src="{{imageProduct}}" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="detail-infor">
                         <div class="detail-content">
-                            <h3 class="detail-heading">TRÀ VẢI</h3>
+                            <h3 class="detail-heading">{{nameProduct}}</h3>
                             <div class="detail-price">
                                 <p class="detail-price__label">Giá:</p>
-                                <p class="detail-price__content">40.000₫</p>
+                                <p class="detail-price__content">{{priceProduct}}₫</p>
                             </div>
                             <div class="detail-quantity">
                                 <p class="detail-quantity__label">Số lượng:</p>
@@ -133,7 +107,7 @@
                     </div>
                     {{/each }}
                 </div>
-            <form action="/menu/tra-vai" method="POST"> 
+            <form action="/menu/jumpsuit-han" method="POST"> 
                 <textarea class="contact-form__text-area" name="comment"></textarea>
                 <button type="submit" class="detail-comment__btn">Thêm bình luận</button> 
             </form>

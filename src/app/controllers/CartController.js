@@ -59,19 +59,8 @@ class OrderController {
                             image: products.image, 
                         })
                     }
-                }     
-                var name = req.cookies.name   
-                var avatar = req.cookies.avatar
-                var quantityCart = req.session.cart.length 
-                Product.find({ category: 'Trà hoa quả' }).exec() 
-                        .then((products) => {   
-                            res.render('menu', {  
-                                name,  
-                                avatar, 
-                                quantityCart,   
-                                products: mutipleMongooseToObject(products),
-                            })
-                        }) 
+                }   
+                res.redirect('back')   
             })  
             .catch(next)
     }   

@@ -181,7 +181,7 @@
     margin-top: 12px;
     text-align: center;
 }
-
+#menu .drink-item__content-heading,
 #home .drink-item__content-heading {
     font-size: 1.2rem;
     line-height: 1.2rem;
@@ -685,12 +685,7 @@
 #menu .drink-item__content {
     margin-top: 24px;
     text-align: center;
-}
-
-#menu .drink-item__content-heading {
-    font-size: 1.2rem;
-    text-transform: uppercase;
-}
+} 
 
 #menu .drink-item__content-price {
     text-transform: capitalize;
@@ -1645,6 +1640,50 @@
 }
 #my-order .order-body__name-wrap p {
     margin-bottom: 0
-} 
+}     
+.introduce-main-wrap { 
+    display: flex; 
+    align-items: center;
+}
+
+
+.introduce-main { 
+
+}
+// Print
+@media print {
+    .order-body__name-wrap { 
+        display: flex; 
+        align-items: baseline;
+    } 
+    .order-body__name-wrap i { 
+        margin-right: 12px;
+    } 
+    .order-date-container {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid var(--main-color); 
+        margin-bottom: 20px;
+    } 
+    .order-body { 
+        padding-top: 10px;
+        border-bottom: 2px solid var(--main-color);
+    }  
+    .order-sumary {
+        padding-top: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }  
+    .order-sumary-label {
+        font-weight: 600;
+        font-size: 18px;
+    }
+    .order-sumary-text {
+        font-weight: bold;
+        font-size: 20px;
+        color: var(--main-color);
+    }   
+}
 
 

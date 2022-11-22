@@ -1,6 +1,6 @@
 const Product = require('../models/Product')  
 const Comment = require('../models/Comment')  
-const { mutipleMongooseToObject } = require('../../util/mogoose')  
+const { mutipleMongooseToObject, mongooseToObject } = require('../../util/mogoose')  
 const cookieParser = require('cookie-parser') 
 const jwt = require('jsonwebtoken') 
 const PAGE_SIZE = 8
@@ -115,8 +115,8 @@ class MenuController {
             res.redirect('/account/login')
         }
     }   
-    // [GET] /menu/tra-hoa-qua/tra-vai 
-    travai(req, res, next) {  
+    // [GET] /menu/jumpsuitHan
+    jumpsuitHan(req, res, next) {  
         var name = req.cookies.name  
         var avatar = req.cookies.avatar 
         var quantityCart
@@ -124,25 +124,30 @@ class MenuController {
                 quantityCart = 0
             } else { 
                 quantityCart = req.session.cart.length
-            }
-        Comment.find({}) 
-            .then((comments) => { 
-                res.render('detail/travai', {  
-                    name, avatar, quantityCart,
+            }   
+        Promise.all([Product.find({slug: req.params.slug}), Comment.find({})])
+            .then(([products, comments]) => { 
+                var slug = req.params.slug
+                var nameProduct = products[0].name
+                var priceProduct = products[0].price
+                var imageProduct = products[0].image
+                res.render(`detail/detailProduct`, {  
+                    name, avatar, quantityCart, 
+                    nameProduct, priceProduct, imageProduct,
                     comments: mutipleMongooseToObject(comments)
                 })
-            }) 
+            })
             .catch(next)
     } 
-    travaiComment(req, res, next) {    
+    jumpsuitHanComment(req, res, next) {    
         var name = req.cookies.name  
         var avatar = req.cookies.avatar   
         var comment = req.body.comment  
         
         Comment.create( 
             { name: name, avatar: avatar, comment: comment},  
-        );   
-        res.redirect('/menu/tra-vai')
+        );     
+        res.redirect('/menu/jumpsuit-han')
     }
      // [GET] /menu/smoothies 
     smoothies(req, res, next) {    
