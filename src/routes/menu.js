@@ -10,6 +10,7 @@ router.get('/ca-phe', menuController.caphe);
 router.get('/banh-ngot', menuController.banhngot);  
 // Detail products
 router.get('/:slug', menuController.jumpsuitHan);   
-router.post('/jumpsuit-han', menuController.jumpsuitHanComment);  
+router.get('/:slug/cart', menuController.menuAddCart);   
+router.post('/comment-detail', menuController.commentDetail);  
 
 module.exports = router;

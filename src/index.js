@@ -64,8 +64,8 @@ route(app)
 // Test Session
 app.get('/set_session', (req, res) => {
     //set a object to session
-    if(req.session.orderId) { 
-      res.json(req.session.orderId)
+    if(req.session) { 
+      res.json(req.session.cart)
     }
 })
 // 

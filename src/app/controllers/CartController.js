@@ -25,7 +25,7 @@ class OrderController {
                 })   
             }) 
     }
-    // [POST] cart/:slug
+    // [GET] cart/:slug
     addCart(req, res, next) {   
         var slug = req.params.slug 
         Product.findOne({slug : slug}) 
