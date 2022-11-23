@@ -4,10 +4,10 @@ const menuController = require('../app/controllers/MenuController');
 
 router.get('/', menuController.index); 
 router.get('/continue', menuController.continue); 
-router.get('/tra-hoa-qua', menuController.trahoaqua);  
-router.get('/smoothies', menuController.smoothies); 
-router.get('/ca-phe', menuController.caphe); 
-router.get('/banh-ngot', menuController.banhngot);  
+router.get('/ao-quan-be-trai', menuController.trahoaqua);  
+router.get('/ao-quan-be-gai', menuController.smoothies); 
+router.get('/sua', menuController.caphe); 
+router.get('/phu-kien', menuController.banhngot);  
 // Detail products
 router.get('/:slug', menuController.jumpsuitHan);   
 router.get('/:slug/cart', menuController.menuAddCart);   
