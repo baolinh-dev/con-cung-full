@@ -44,16 +44,42 @@ app.get( '/google/callback',
 
 app.get('/protected', isLoggedIn, (req, res) => { 
   var name = req.user.displayName 
-  var avatar = req.user.picture 
-  var quantityCart
-  if(typeof req.session.cart == "undefined") { 
-      quantityCart = 0
-  } else { 
-      quantityCart = req.session.cart.length
-  } 
-  res.render('sites/home', { 
-    name, avatar, quantityCart
-  })
+  var avatar = req.user.picture   
+  var email = req.user.email 
+  var id = req.user.id
+
+  var checkDupliAccount = true 
+
+  Account.findOne({name: name}) 
+    .then(data => {     
+      if(data == null) { 
+        Account.create({name, avatar, email})   
+      }
+      var token = jwt.sign({ id},'matkhau')     
+      res.setHeader('Content-Type', 'text/html');
+      res.cookie('token', token) 
+      res.cookie('name', name)    
+      res.cookie('avatar', avatar)  
+      var quantityCart
+      if(typeof req.session.cart == "undefined") { 
+          quantityCart = 0
+      } else { 
+          quantityCart = req.session.cart.length
+      }  
+      Promise.all([Product.find({ category: 'Áo quần bé trai' }).limit(8), 
+        Product.find({ category: 'Áo quần bé gái' }).limit(8),  
+        Product.find({ category: 'Sữa, đồ ăn dặm' }).limit(8),  
+        Product.find({ category: 'Phụ kiện' }).limit(8)])
+                .then(([productsA, productsB, productsC, productsD]) => { 
+                    res.render('sites/home', {   
+                        avatar, name, quantityCart,
+                        productsA: mutipleMongooseToObject(productsA), 
+                        productsB: mutipleMongooseToObject(productsB), 
+                        productsC: mutipleMongooseToObject(productsC), 
+                        productsD: mutipleMongooseToObject(productsD)
+                    });
+                })
+    })  
 });
 // Cookies 
 app.use(cookieParser())
