@@ -8,7 +8,7 @@ class HomeController {
     index(req, res, next) { 
         try {
             var token = req.cookies.token
-            var ketqua = jwt.verify(token, 'matkhau')    
+            var ketqua = jwt.verify(token, 'matkhau')     
             var name = req.cookies.name   
             var avatar = req.cookies.avatar    
             var quantityCart
@@ -19,7 +19,7 @@ class HomeController {
             } 
             if(ketqua) {           
                 Account.findById(ketqua._id)  
-                    .then((accounts) => {  
+                    .then((accounts) => {   
                         if(accounts.role == 'user' || accounts.role == 'admin') {   
                             Promise.all([Product.find({ category: 'Áo quần bé trai' }).limit(8), 
                         Product.find({ category: 'Áo quần bé gái' }).limit(8),  

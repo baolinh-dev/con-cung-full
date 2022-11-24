@@ -67,7 +67,8 @@ class AccountController {
     // [POST] /account/enter 
     enter(req, res, next) {
   var username = req.body.username
-  var password = req.body.password   
+  var password = req.body.password  
+  var check = true  
       Account.findOne({ username, password })
               .then((accounts) => {  
                   if(accounts) {    
@@ -84,7 +85,9 @@ class AccountController {
                         res.redirect('/admin/account')
                       }
                   } else { 
-                      res.json('Dang nhap that bai')
+                      res.render('account/login', {  
+                        layout: false, check
+                      })
                   }
               }) 
               .catch(next);

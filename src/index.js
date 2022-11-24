@@ -51,11 +51,11 @@ app.get('/protected', isLoggedIn, (req, res) => {
   var checkDupliAccount = true 
 
   Account.findOne({name: name}) 
-    .then(data => {     
-      if(data == null) { 
+    .then(accounts => {     
+      if(accounts == null) { 
         Account.create({name, avatar, email})   
-      }
-      var token = jwt.sign({ id},'matkhau')     
+      } 
+      var token = jwt.sign({_id: accounts._id},'matkhau')     
       res.setHeader('Content-Type', 'text/html');
       res.cookie('token', token) 
       res.cookie('name', name)    
