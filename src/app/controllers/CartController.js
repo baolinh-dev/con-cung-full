@@ -3,10 +3,37 @@ const { mongooseToObject } = require('../../util/mogoose');
 const { mutipleMongooseToObject } = require('../../util/mogoose'); 
 const Account = require('../models/Account');
 const Order = require('../models/Order')  
-const Product = require('../models/Product');  
-const { account } = require('./AdminController');
-class OrderController {  
-    cartList(req, res, next) {   
+const Product = require('../models/Product');   
+const nodemailer = require('nodemailer') 
+const { account } = require('./AdminController'); 
+function sendEmail(orderId, email, name, phone, sumary, payment, address, estimatedDay) { 
+  return new Promise((resolve, reject) => { 
+    var transporter = nodemailer.createTransport({ 
+      service: "Gmail",
+      auth: {  
+        user: "concungdanang@gmail.com",  
+        pass: "gsmixveemjzhpuex"
+      }
+    })
+
+    const mail_configs = { 
+      from: "Concunng", 
+      to: email, 
+      subject: "Đơn hàng đã được xác nhận", 
+      text: `Mã đơn hàng: ${orderId}\nTên người mua: ${name}\nSố điện thoại: ${phone}\nTổng đơn hàng: ${sumary}\nHình thức thanh toán: ${payment}\nĐịa chỉ giao hàng: ${address}\nNgày nhận hàng dự kiến: ${estimatedDay}`
+    } 
+    transporter.sendMail(mail_configs, function(error, info) { 
+      if(error) { 
+        console.log(error) 
+        return reject({message: "An error"})
+      }  
+      return resolve({message: "Email sent"})
+    })
+  })
+}   
+class OrderController {   
+    // [GET] cart/list
+    cartList(req, res, next) {     
         var carts = req.session.cart 
         var name = req.cookies.name   
         var avatar = req.cookies.avatar   
@@ -26,7 +53,7 @@ class OrderController {
             }) 
     }
     // [GET] cart/:slug
-    addCart(req, res, next) {   
+    addCart(req, res, next) {    
         var slug = req.params.slug 
         Product.findOne({slug : slug}) 
             .then((products) => { 
@@ -65,7 +92,8 @@ class OrderController {
             .catch(next)
     }   
     // [POST] /cart/list
-    saveCartList(req, res, next) {  
+    saveCartList(req, res, next) {   
+        
         var d = new Date(); 
         var month = d.getMonth() + 1; 
         var day = d.getDate()  
@@ -78,15 +106,15 @@ class OrderController {
         var address = req.body.address
         var sumary = req.body.sumary   
         var payment = req.body.payment   
-
         var dateOrder = `${day}-${month}-${year}`   
-        var dateEstimatedOrder = `${estimatedDay}-${month}-${year}`   
+        var dateEstimatedOrder = `${estimatedDay}-${month}-${year}`    
 
         Order.create({name, phone, email, address, sumary, dateOrder, dateEstimatedOrder, payment}) 
-            .then((data) => { 
+            .then((data) => {     
+                    sendEmail(data._id, email, name, phone, sumary, payment, address, dateEstimatedOrder)
                     req.session.orderId = data._id   
                     if(payment == "COD") {
-                        res.redirect('/cart/detail')
+                        res.redirect('/cart/detail') 
                     } else if(payment == "Đang chờ xác nhận") {
                         res.redirect('/cart/detail/banking')
                     }

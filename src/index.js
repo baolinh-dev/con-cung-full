@@ -7,7 +7,9 @@ const { mutipleMongooseToObject } = require('../src/util/mogoose');
 const { engine } = require('express-handlebars');   
 
 const passport = require('passport'); 
-require('./auth'); 
+require('./auth');  
+
+const nodemailer = require('nodemailer')
 
 const express = require('express')  
 const morgan = require('morgan')  
@@ -21,7 +23,9 @@ const port = 3000
 // Check Login Google 
 function isLoggedIn(req, res, next) {
   req.user ? next() : res.sendStatus(401);
-}
+} 
+// Cookies 
+app.use(cookieParser())
 // Session
 app.use(session({
   secret: 'secret-key',
@@ -29,7 +33,13 @@ app.use(session({
   saveUninitialized: true,
 }))  
 app.use(passport.initialize());
-app.use(passport.session()); 
+app.use(passport.session());  
+// Test Send Mail  
+app.get('/send', (req, res) => { 
+  sendEmail() 
+  .then(response => res.send(response.message)) 
+  .catch(error => res.status(500).send(error.message))
+})
 // Login Google 
 app.get('/auth/google',
   passport.authenticate('google', { scope: [ 'email', 'profile' ] }
@@ -81,14 +91,13 @@ app.get('/protected', isLoggedIn, (req, res) => {
                 })
     })  
 });
-// Cookies 
-app.use(cookieParser())
 // file co ten index thi khong can nap vao
 const route = require('./routes') 
 // Connect to DB 
 const db = require('./config/db'); 
 const { time } = require('console');
 const Order = require('./app/models/Order');
+const { resolve } = require('path');
 db.connect() 
 // Fix body POST method 
 app.use(express.urlencoded({ 
