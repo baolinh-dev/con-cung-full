@@ -153,7 +153,8 @@ class AccountController {
             .catch(next);  
         // res.send(`You have uploaded this image: <hr/><img src="${urlAvatarUser}" width="300"><hr /><a href="/upload">Upload another image</a>`);  
         res.redirect('/account/login')
-    } 
+    }  
+    // [GET]
     forgot(req, res, next) {  
         res.render('account/forgot', { 
             layout: false
