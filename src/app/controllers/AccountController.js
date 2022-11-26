@@ -23,7 +23,7 @@ function sendEmail(email) {
       to: email, 
       subject: "Lấy lại mật khẩu",  
       text: "Lấy lại mật khẩu",  
-      html: `<a href="http://localhost:3000/account/restore?email=${email}">Lấy lại mật khẩu</a>`,
+      html: `<p>Để lấy lại mật khẩu click vào đường link sau đây <a href="http://localhost:3000/account/restore?email=${email}">Lấy lại mật khẩu</a> </p>`,
     } 
     transporter.sendMail(mail_configs, function(error, info) { 
       if(error) { 
@@ -158,11 +158,15 @@ class AccountController {
         res.render('account/forgot', { 
             layout: false
         })
-    }  
+    }   
+    // [POST]
     forgotSendMail(req, res, next) {   
         const email = req.body.email 
-        req.session.email = email
         sendEmail(email)     
+        var check = true 
+        res.render('account/forgot', {
+            layout: false, check
+        })
     }   
     // [GET]
     restore(req, res, next) {   
