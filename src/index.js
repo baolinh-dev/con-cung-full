@@ -25,7 +25,7 @@ function isLoggedIn(req, res, next) {
   req.user ? next() : res.sendStatus(401);
 } 
 // Cookies 
-app.use(cookieParser())
+app.use(cookieParser()) 
 // Session
 app.use(session({
   secret: 'secret-key',
@@ -34,12 +34,6 @@ app.use(session({
 }))  
 app.use(passport.initialize());
 app.use(passport.session());  
-// Test Send Mail  
-app.get('/send', (req, res) => { 
-  sendEmail() 
-  .then(response => res.send(response.message)) 
-  .catch(error => res.status(500).send(error.message))
-})
 // Login Google 
 app.get('/auth/google',
   passport.authenticate('google', { scope: [ 'email', 'profile' ] }

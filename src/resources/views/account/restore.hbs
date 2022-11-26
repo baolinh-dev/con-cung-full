@@ -58,14 +58,16 @@
 <body>
     <div class="app">
     <section id="login">
-        <form class="login-form-container" method="POST" action="/account/enter">
-            <h3 class="login-heading">Đăng nhập</h3>
+        <form class="login-form-container" method="POST" action="/account/restore/save?_method=PUT">
+            <h3 class="login-heading">Lấy lại mật khẩu</h3>
             <p class="resgister-link-wrap">Nếu bạn chưa có tài khoản,
                 <a class="resgister-link" href="/account/register">đăng ký tại đây</a>
             </p>
-            <input required type="text" class="login-register-btn-common" placeholder="Username" name="username"
+            <input style="display: none;" required type="text" class="login-register-btn-common" value="{{email}}" name="email"
+                id="email">
+            <input required type="text" class="login-register-btn-common" value="{{username}}" name="username"
                 id="username">
-            <input required type="password" class="login-register-btn-common" placeholder="Passwork" name="password"
+            <input required type="password" class="login-register-btn-common" placeholder="Nhập lại mật khẩu mới" name="password"
                 id="password">   
             <div class="showpassword">
                 <input onclick="showPassWord()" type="checkbox" name=""> 
