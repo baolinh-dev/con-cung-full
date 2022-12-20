@@ -1,3 +1,4 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const Account = require('../models/Account')    
 const Product = require('../models/Product') 
 const { mongooseToObject } = require('../../util/mogoose');
@@ -13,8 +14,8 @@ function sendEmail(email) {
     var transporter = nodemailer.createTransport({ 
       service: "Gmail",
       auth: {  
-        user: "baoolink@gmail.com",  
-        pass: "ijpfdhbmbdhggwnk"
+        user: "concungdanang@gmail.com",  
+        pass: "hfqjnonreckyqsym"
       }
     })
 

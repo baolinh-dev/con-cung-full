@@ -1,3 +1,4 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const { response } = require('express');
 const { mongooseToObject } = require('../../util/mogoose');
 const { mutipleMongooseToObject } = require('../../util/mogoose'); 
@@ -9,10 +10,10 @@ const { account } = require('./AdminController');
 function sendEmail(orderId, email, name, phone, sumary, payment, address, estimatedDay) { 
   return new Promise((resolve, reject) => { 
     var transporter = nodemailer.createTransport({ 
-      service: "Gmail",
+      service: "gmail",
       auth: {  
         user: "concungdanang@gmail.com",  
-        pass: "gsmixveemjzhpuex"
+        pass: "hfqjnonreckyqsym"
       }
     })
 
@@ -93,7 +94,6 @@ class OrderController {
     }   
     // [POST] /cart/list
     saveCartList(req, res, next) {   
-        
         var d = new Date(); 
         var month = d.getMonth() + 1; 
         var day = d.getDate()  
